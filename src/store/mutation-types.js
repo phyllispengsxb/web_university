@@ -1,0 +1,3 @@
+export const SET_GOODS_DETAIL = 'SET_GOODS_DETAIL'
+
+export const SET_FULL_SCREEN = 'SET_FULL_SCREEN'
