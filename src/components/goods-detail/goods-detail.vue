@@ -11,11 +11,13 @@
         <h2 class="name">评价</h2>
       </div>
     </div>
+    <shop-btn class="shopBtn"></shop-btn>
   </div>
 </template>
 
 <script>
   import {mapGetters, mapMutations} from 'vuex'
+  import ShopBtn from 'base/shop-btn/shop-btn'
   export default {
     computed: {
       ...mapGetters([
@@ -30,6 +32,9 @@
       ...mapMutations({
         setFullScreen: 'SET_FULL_SCREEN'
       })
+    },
+    components: {
+      ShopBtn
     }
   }
 </script>
@@ -38,10 +43,11 @@
   .goodsDetail
     position: fixed
     top: 0
-    bottom: 0
+    bottom: 43px
     left: 0
     right: 0
-    background:#fff
+    z-index : 99
+    background: #fff
     .detail-wapper
       position: absolute
       top: 0px

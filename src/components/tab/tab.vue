@@ -24,6 +24,6 @@
       .tab-link
         font-size: $font-size-medium
       &.router-link-active
-        background: #b1b1b1
-        color: #fff;
+        border-bottom:2px solid #c15138
+        color: #0e0c0c
 </style>
