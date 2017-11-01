@@ -1,5 +1,6 @@
 const state = {
   goodsDetail: {},
-  fullScreen: false
+  fullScreen: false,
+  shopCarListFullScreen: false
 }
 export default state

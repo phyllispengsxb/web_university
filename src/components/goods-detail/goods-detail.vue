@@ -12,12 +12,14 @@
       </div>
     </div>
     <shop-btn class="shopBtn"></shop-btn>
+    <shop-car-list></shop-car-list>
   </div>
 </template>
 
 <script>
   import {mapGetters, mapMutations} from 'vuex'
   import ShopBtn from 'base/shop-btn/shop-btn'
+  import ShopCarList from 'components/shopcar-list/shopcar-list.vue'
   export default {
     computed: {
       ...mapGetters([
@@ -34,7 +36,8 @@
       })
     },
     components: {
-      ShopBtn
+      ShopBtn,
+      ShopCarList
     }
   }
 </script>
@@ -43,7 +46,7 @@
   .goodsDetail
     position: fixed
     top: 0
-    bottom: 43px
+    bottom: 0px
     left: 0
     right: 0
     z-index : 99

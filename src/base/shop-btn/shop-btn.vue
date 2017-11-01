@@ -1,16 +1,26 @@
 <template>
   <div class="shop_btn">
     <div class="shopcar_img">
-      <span class="icon-shopping_cart"></span>
+      <span class="icon-shopping_cart" @click="openShopCarList"></span>
       <span class="num" v-show="true">12</span>
     </div>
     <div class="now_buy">立即购买</div>
-    <div class="add_shopcar">加入购物车</div>
+    <div class="add_shopcar" v-show="true">加入购物车</div>
   </div>
 </template>
 
 <script>
-
+  import {mapMutations} from 'vuex'
+  export default{
+    methods: {
+      openShopCarList () {
+        this.setShopCarListFullScreen(true)
+      },
+      ...mapMutations({
+        setShopCarListFullScreen: 'SET_SHOP_CAR_FULL_SCREEN'
+      })
+    }
+  }
 </script>
 
 <style scope lang="stylus" ref="stylesheet/stylus">

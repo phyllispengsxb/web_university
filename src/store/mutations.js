@@ -6,6 +6,9 @@ const mutations = {
   },
   [types.SET_FULL_SCREEN] (state, flag) {
     state.fullScreen = flag
+  },
+  [types.SET_SHOP_CAR_FULL_SCREEN] (state, flag) {
+    state.shopCarListFullScreen = flag
   }
 }
 export default mutations
