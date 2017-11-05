@@ -11,16 +11,23 @@
         <h2 class="name">评价</h2>
       </div>
     </div>
-    <shop-btn class="shopBtn"></shop-btn>
-    <shop-car-list></shop-car-list>
+    <shop-btn @addCarList="addCarList" :goods-detail="goodsDetail" class="shopBtn"></shop-btn>
+    <transition name="slide">
+      <shop-car-list :car-list-goods="carListGoods"></shop-car-list>
+    </transition>
   </div>
 </template>
 
 <script>
   import {mapGetters, mapMutations} from 'vuex'
   import ShopBtn from 'base/shop-btn/shop-btn'
-  import ShopCarList from 'components/shopcar-list/shopcar-list.vue'
+  import ShopCarList from 'components/shop-car-list/shop-car-list.vue'
   export default {
+    data () {
+      return {
+        carListGoods: []
+      }
+    },
     computed: {
       ...mapGetters([
         'fullScreen',
@@ -33,7 +40,11 @@
       },
       ...mapMutations({
         setFullScreen: 'SET_FULL_SCREEN'
-      })
+      }),
+      addCarList (list) {
+        this.carListGoods = list
+        console.log(this.carListGoods)
+      }
     },
     components: {
       ShopBtn,
@@ -81,4 +92,8 @@
           padding-left: 10px
           background: #f1f1f1
 
+    .slide-enter-active, .slide-leave-active
+      transition: all 0.3s
+    .slide-enter, .slide-leave-to
+      transform: translate3d(100%, 0, 0)
 </style>

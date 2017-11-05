@@ -2,20 +2,22 @@
   <div v-show="shopCarListFullScreen" class="shop-car-list">
     <div class="top-back"><span @click="back" class="back">返回上一级</span></div>
     <div class="goods-list-title"><h2 class="list-title">商品信息</h2></div>
+    <div class="alert" v-show="totalPrice===0">暂无选中商品哦</div>
     <ul class="goods-list">
-      <li class="goods-list-desc clearfix">
+      <li class="goods-list-desc clearfix" v-for="book in carListGoods">
         <img class="goods-img">
-        <div class="name">商品名称</div>
-        <div class="price">19.9元</div>
+        <div class="desc">
+          <div class="name">{{book.name}}</div>
+          <div class="price">{{book.price}}</div></div>
         <div><a class="delete">删除</a></div>
       </li>
     </ul>
     <div class="shop_btn">
       <div class="shopcar_img">
         <span class="icon-shopping_cart"></span>
-        <span class="num" v-show="true">12</span>
+        <span class="num" v-show="true">{{carCount}}</span>
       </div>
-      <div class="total_price">共<span class="money">3434fdfd</span>元</div>
+      <div class="total_price">共<span class="money">{{totalPrice}}</span>元</div>
       <div class="now_buy">立即购买</div>
     </div>
   </div>
@@ -24,10 +26,24 @@
 <script>
   import {mapGetters, mapMutations} from 'vuex'
   export default {
+    props: {
+      carListGoods: {
+        type: Array
+      }
+    },
     computed: {
       ...mapGetters([
-        'shopCarListFullScreen'
-      ])
+        'shopCarListFullScreen',
+        'carCount',
+        'carList'
+      ]),
+      totalPrice () {
+        let total = 0
+        this.carListGoods.forEach((book) => {
+          total += book.price
+        })
+        return total
+      }
     },
     methods: {
       back () {
@@ -59,27 +75,35 @@
       line-height: 46px
       border-top:1px solid #f1f1f1
       border-bottom:1px solid #f1f1f1
-      padding-left: 10px
+      text-align center
+    .alert
+      height: 200;
+      line-height: 200px;
+      text-align: center;
     .goods-list
-      position: relative
-      padding: 10px
       border-bottom:1px solid #f1f1f1
       .goods-list-desc
+        width: 100%
+        position: relative
+        padding: 10px
+        border-bottom:1px solid #f1f1f1
         .goods-img
           float: left
           margin-right:10px
           height: 80px
           width: 80px
           border:1px solid #f1f1f1
-        .name
+        .desc
           float:left
-          margin-top: 10px
-          margin-bottom: 10px
+          .name
+            float:left
+            margin-top: 10px
+            margin-bottom: 10px
         .delete
           position:absolute
           bottom: 16px
-          right: 10px
-
+          right: 30px
+          color: #9e030b
     .shop_btn
       position: fixed
       bottom: 0px

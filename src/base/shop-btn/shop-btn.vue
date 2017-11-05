@@ -2,23 +2,54 @@
   <div class="shop_btn">
     <div class="shopcar_img">
       <span class="icon-shopping_cart" @click="openShopCarList"></span>
-      <span class="num" v-show="true">12</span>
+      <span class="num" v-show="true">{{ carCount }}</span>
     </div>
     <div class="now_buy">立即购买</div>
-    <div class="add_shopcar" v-show="true">加入购物车</div>
+    <div class="add_shopcar" v-show="true" @click="addCarList">加入购物车</div>
   </div>
 </template>
 
 <script>
-  import {mapMutations} from 'vuex'
+  import {mapGetters, mapMutations} from 'vuex'
   export default{
+    data () {
+      return {
+        carListGoods: []
+      }
+    },
+    props: {
+      goodsDetail: {
+        type: Object
+      }
+    },
+    computed: {
+      ...mapGetters([
+        'carCount',
+        'carList'
+      ])
+    },
     methods: {
       openShopCarList () {
         this.setShopCarListFullScreen(true)
       },
       ...mapMutations({
-        setShopCarListFullScreen: 'SET_SHOP_CAR_FULL_SCREEN'
-      })
+        setShopCarListFullScreen: 'SET_SHOP_CAR_FULL_SCREEN',
+        setCarCount: 'SET_CAR_COUNT',
+        setCarList: 'SET_CAR_LIST'
+      }),
+      addCarList () {
+        for (let i = 0; i < this.carListGoods.length; i++) {
+          if (this.carListGoods[i].id === this.goodsDetail.id) {
+            alert('您的购物车中已经有该商品啦')
+            return
+          }
+        }
+        this.carListGoods.push(this.goodsDetail)
+        this.setCarCount(this.carCount + 1)
+        // this.setCarList(this.carListGoods)
+        // console.log(this.carListGoods)
+        this.$emit('addCarList', this.carListGoods)
+      }
     }
   }
 </script>
