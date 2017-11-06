@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import News from 'components/news/news'
 import Books from 'components/books/books'
 import Vidio from 'components/vidio/vidio'
+import GoodsDetail from 'components/goods-detail/goods-detail'
 
 Vue.use(Router)
 
@@ -18,7 +19,11 @@ export default new Router({
     },
     {
       path: '/books',
-      component: Books
+      component: Books,
+      children: [{
+        path: ':id',
+        component: GoodsDetail
+      }]
     },
     {
       path: '/vidio',

@@ -1,26 +1,28 @@
 <template>
-  <div v-show="shopCarListFullScreen" class="shop-car-list">
-    <div class="top-back"><span @click="back" class="back">返回上一级</span></div>
-    <div class="goods-list-title"><h2 class="list-title">商品信息</h2></div>
-    <div class="alert" v-show="totalPrice===0">暂无选中商品哦</div>
-    <ul class="goods-list">
-      <li class="goods-list-desc clearfix" v-for="book in carListGoods">
-        <img class="goods-img">
-        <div class="desc">
-          <div class="name">{{book.name}}</div>
-          <div class="price">{{book.price}}</div></div>
-        <div><a class="delete">删除</a></div>
-      </li>
-    </ul>
-    <div class="shop_btn">
-      <div class="shopcar_img">
-        <span class="icon-shopping_cart"></span>
-        <span class="num" v-show="true">{{carCount}}</span>
+  <transition name="slide">
+    <div v-show="shopCarListFullScreen" class="shop-car-list">
+      <div class="top-back"><span @click="back" class="back">返回上一级</span></div>
+      <div class="goods-list-title"><h2 class="list-title">商品信息</h2></div>
+      <div class="alert" v-show="totalPrice===0">暂无选中商品哦</div>
+      <ul class="goods-list">
+        <li class="goods-list-desc clearfix" v-for="book in carListGoods">
+          <img class="goods-img">
+          <div class="desc">
+            <div class="name">{{book.name}}</div>
+            <div class="price">{{book.price}}</div></div>
+          <div><a class="delete">删除</a></div>
+        </li>
+      </ul>
+      <div class="shop_btn">
+        <div class="shopcar_img">
+          <span class="icon-shopping_cart"></span>
+          <span class="num" v-show="true">{{carCount}}</span>
+        </div>
+        <div class="total_price">共<span class="money">{{totalPrice}}</span>元</div>
+        <div class="now_buy">立即购买</div>
       </div>
-      <div class="total_price">共<span class="money">{{totalPrice}}</span>元</div>
-      <div class="now_buy">立即购买</div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -147,4 +149,9 @@
       padding-left: 10px
       background: #e24141
       color: #fff
+    &.slide-enter-active, &.slide-leave-active
+      transition: all 0.3s
+
+    &.slide-enter, &.slide-leave-to
+      transform: translate3d(100%, 0, 0)
 </style>

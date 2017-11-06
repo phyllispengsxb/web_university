@@ -45,6 +45,7 @@
     <div v-show="fixedTitle" class="list-fixed" ref="fixed">
       <h1 class="fixed-title">{{ fixedTitle }}</h1>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -107,8 +108,11 @@
         this.$refs.listview.scrollToElement(this.$refs.listgroup[index], 0)
       },
       selectItem (books) {
+        this.$router.push({
+          path: `/books/${books.id}`
+        })
         this.setGoodsDetail(books)
-        this.setFullScreen(true)
+        // this.setFullScreen(true)
       },
       ...mapMutations({
         setGoodsDetail: 'SET_GOODS_DETAIL',
