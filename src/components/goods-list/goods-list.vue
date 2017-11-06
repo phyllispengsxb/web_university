@@ -11,8 +11,9 @@
         <h2 class="name">评价</h2>
       </div>
     </div>
-    <shop-btn @addCarList="addCarList" :goods-detail="goodsDetail" class="shopBtn"></shop-btn>
-    <shop-car-list :car-list-goods="carListGoods"></shop-car-list>
+    <shop-btn :goods-detail="goodsDetail" class="shopBtn"></shop-btn>
+    <!--<shop-car-list :car-list-goods="carListGoods"></shop-car-list>-->
+    <shop-car-list></shop-car-list>
   </div>
 </template>
 
@@ -21,11 +22,12 @@
   import ShopBtn from 'base/shop-btn/shop-btn'
   import ShopCarList from 'components/shop-car-list/shop-car-list.vue'
   export default {
+    /* 有问题的
     data () {
       return {
         carListGoods: []
       }
-    },
+    }, */
     created () {
       this._getDetail()
     },
@@ -46,11 +48,12 @@
       },
       ...mapMutations({
         setFullScreen: 'SET_FULL_SCREEN'
-      }),
+      })
+      /* 有问题的 --001
       addCarList (list) {
         this.carListGoods = list
         console.log(this.carListGoods)
-      }
+      } */
     },
     components: {
       ShopBtn,

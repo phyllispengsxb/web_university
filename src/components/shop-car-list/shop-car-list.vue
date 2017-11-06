@@ -5,7 +5,7 @@
       <div class="goods-list-title"><h2 class="list-title">商品信息</h2></div>
       <div class="alert" v-show="totalPrice===0">暂无选中商品哦</div>
       <ul class="goods-list">
-        <li class="goods-list-desc clearfix" v-for="book in carListGoods">
+        <li class="goods-list-desc clearfix" v-for="book in carList">
           <img class="goods-img">
           <div class="desc">
             <div class="name">{{book.name}}</div>
@@ -28,11 +28,12 @@
 <script>
   import {mapGetters, mapMutations} from 'vuex'
   export default {
+    /* 有问题的  --001
     props: {
       carListGoods: {
         type: Array
       }
-    },
+    }, */
     computed: {
       ...mapGetters([
         'shopCarListFullScreen',
@@ -41,7 +42,7 @@
       ]),
       totalPrice () {
         let total = 0
-        this.carListGoods.forEach((book) => {
+        this.carList.forEach((book) => {
           total += book.price
         })
         return total

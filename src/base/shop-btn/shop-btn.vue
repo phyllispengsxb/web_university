@@ -12,11 +12,12 @@
 <script>
   import {mapGetters, mapMutations} from 'vuex'
   export default{
+    /* 最开始的项目想，有问题的 --001
     data () {
       return {
         carListGoods: []
       }
-    },
+    }, */
     props: {
       goodsDetail: {
         type: Object
@@ -38,13 +39,15 @@
         setCarList: 'SET_CAR_LIST'
       }),
       addCarList () {
-        for (let i = 0; i < this.carListGoods.length; i++) {
-          if (this.carListGoods[i].id === this.goodsDetail.id) {
+        // console.log(this.carList)
+        for (let i = 0; i < this.carList.length; i++) {
+          if (this.carList[i].id === this.goodsDetail.id) {
             alert('您的购物车中已经有该商品啦')
             return
           }
         }
-        this.carListGoods.push(this.goodsDetail)
+        this.carList.push(this.goodsDetail)
+        this.setCarList(this.carList)
         this.setCarCount(this.carCount + 1)
         // this.setCarList(this.carListGoods)
         // console.log(this.carListGoods)
